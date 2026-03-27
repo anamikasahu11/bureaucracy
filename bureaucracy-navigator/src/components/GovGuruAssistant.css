@@ -1,0 +1,275 @@
+:root {
+  --gg-primary: #335dff;
+  --gg-primary-strong: #1f46e8;
+  --gg-accent: #2a8bff;
+  --gg-bg: #f7faff;
+  --gg-text: #19233a;
+  --gg-soft-text: #5f6f8f;
+  --gg-user-bubble: #ddfbe3;
+  --gg-ai-bubble: #ffffff;
+}
+
+.govguru-root {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1400;
+}
+
+.govguru-fab {
+  width: 62px;
+  height: 62px;
+  border: none;
+  border-radius: 999px;
+  background: radial-gradient(circle at 28% 25%, #59a2ff 0%, var(--gg-primary) 52%, #2038c7 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 34px rgba(36, 86, 255, 0.44);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 180ms ease, box-shadow 220ms ease, filter 180ms ease;
+}
+
+.govguru-fab:hover {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 16px 38px rgba(43, 99, 255, 0.56);
+  filter: brightness(1.05);
+}
+
+.govguru-fab.open {
+  transform: scale(0.96);
+}
+
+.bot-emoji {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.govguru-window {
+  position: absolute;
+  right: 0;
+  bottom: 76px;
+  width: min(430px, calc(100vw - 30px));
+  height: min(560px, calc(100vh - 120px));
+  border: 1px solid #dbe8ff;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f8fbff 0%, #f4f8ff 100%);
+  box-shadow: 0 24px 60px rgba(18, 35, 92, 0.22);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transform-origin: right bottom;
+  transition: opacity 220ms ease, transform 240ms ease, visibility 220ms ease;
+}
+
+.govguru-window.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.98);
+}
+
+.govguru-window.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.govguru-header {
+  padding: 14px 14px 12px;
+  background: linear-gradient(130deg, #1d3dc6 0%, #345dff 52%, #4f9bff 100%);
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.govguru-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  animation: govguruPulse 2.1s ease-in-out infinite;
+}
+
+.govguru-heading h3 {
+  margin: 0;
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.govguru-heading p {
+  margin: 3px 0 0;
+  font-size: 0.83rem;
+  opacity: 0.95;
+}
+
+.govguru-messages {
+  background: linear-gradient(180deg, #fbfdff 0%, #f7faff 100%);
+  overflow-y: auto;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.govguru-message {
+  max-width: 86%;
+  animation: messageIn 220ms ease;
+}
+
+.govguru-message p {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  box-shadow: 0 4px 12px rgba(23, 37, 84, 0.08);
+}
+
+.govguru-message.assistant {
+  justify-self: start;
+}
+
+.govguru-message.assistant p {
+  color: var(--gg-text);
+  background: var(--gg-ai-bubble);
+  border: 1px solid #dde7fb;
+}
+
+.govguru-message.user {
+  justify-self: end;
+}
+
+.govguru-message.user p {
+  color: #0f5132;
+  background: var(--gg-user-bubble);
+  border: 1px solid #b9efc8;
+}
+
+.govguru-message.typing p {
+  color: #30405e;
+}
+
+.dots {
+  margin-left: 3px;
+}
+
+.dots span {
+  display: inline-block;
+  animation: dotJump 0.9s ease-in-out infinite;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.govguru-input-row {
+  border-top: 1px solid #d9e5ff;
+  background: #ffffff;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.govguru-input-row input {
+  min-width: 0;
+  border: 1px solid #cad8f9;
+  border-radius: 11px;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+  color: #1f2940;
+  background: #f9fbff;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.govguru-input-row input:focus {
+  border-color: var(--gg-primary);
+  box-shadow: 0 0 0 3px rgba(51, 93, 255, 0.14);
+}
+
+.govguru-input-row button {
+  border: none;
+  border-radius: 11px;
+  padding: 10px 13px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(130deg, var(--gg-primary) 0%, var(--gg-accent) 100%);
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.govguru-input-row button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.govguru-input-row button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes govguruPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes messageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dotJump {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .govguru-root {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .govguru-fab {
+    width: 56px;
+    height: 56px;
+  }
+
+  .govguru-window {
+    right: 0;
+    bottom: 68px;
+    width: min(420px, calc(100vw - 24px));
+    height: min(72vh, calc(100vh - 96px));
+    border-radius: 16px;
+  }
+}
