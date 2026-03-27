@@ -4,3 +4,4 @@ dist/
 build/
 .env
 
+bureaucracy-navigator/.git_backup_local/
